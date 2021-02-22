@@ -32,9 +32,9 @@ ChapterIntro5_0:
         .byte                   20
         .byte   W10
         .byte                   10
-        .byte   W10
+        .byte   W16
         .byte           EOT
-        .byte   W66
+        .byte   W60
 @ 003   ----------------------------------------
         .byte   W96
 @ 004   ----------------------------------------
@@ -75,6 +75,7 @@ ChapterIntro5_0_LOOP:
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_0_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 1 (Midi-Chn.1) ******************@
@@ -86,6 +87,7 @@ ChapterIntro5_1:
         .byte           VOICE , 127
         .byte   W96
 @ 001   ----------------------------------------
+        .byte   W06
         .byte           N12   , Gs4 , v100
         .byte   W12
         .byte                   Gs4
@@ -95,7 +97,7 @@ ChapterIntro5_1:
         .byte                   Gs4
         .byte   W12
         .byte                   Gs4
-        .byte   W48
+        .byte   W42
 @ 002   ----------------------------------------
         .byte   W96
 @ 003   ----------------------------------------
@@ -138,6 +140,7 @@ ChapterIntro5_1_LOOP:
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_1_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 2 (Midi-Chn.2) ******************@
@@ -147,7 +150,7 @@ ChapterIntro5_2:
 @ 000   ----------------------------------------
         .byte           VOL   , 20
         .byte           VOICE , 100
-        .byte   W48
+        .byte   W54
         .byte           N12   , Cn5 , v100
         .byte   W12
         .byte                   Bn4
@@ -155,10 +158,11 @@ ChapterIntro5_2:
         .byte                   As4
         .byte   W12
         .byte                   An4
-        .byte   W12
+        .byte   W06
 @ 001   ----------------------------------------
+        .byte   W06
         .byte                   Gs4
-        .byte   W96
+        .byte   W90
 @ 002   ----------------------------------------
         .byte   W96
 @ 003   ----------------------------------------
@@ -201,6 +205,7 @@ ChapterIntro5_2_LOOP:
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_2_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 3 (Midi-Chn.3) ******************@
@@ -212,21 +217,22 @@ ChapterIntro5_3:
         .byte           VOL   , 80
         .byte   W96
 @ 001   ----------------------------------------
-        .byte   W72
+        .byte   W78
         .byte           N30   , Bn2 , v100
-        .byte   W24
+        .byte   W18
 @ 002   ----------------------------------------
         .byte   W24
         .byte   W03
         .byte           VOICE , 117
         .byte           VOL   , 100
+        .byte   W06
         .byte           N06   , Gn1
-        .byte   W09
+        .byte   W03
         .byte           VOICE , 111
         .byte           VOL   , 50
-        .byte   W24
+        .byte   W30
         .byte           N24   , Ds4
-        .byte   W36
+        .byte   W30
 @ 003   ----------------------------------------
         .byte   W96
 @ 004   ----------------------------------------
@@ -267,6 +273,7 @@ ChapterIntro5_3_LOOP:
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_3_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 4 (Midi-Chn.4) ******************@
@@ -280,14 +287,14 @@ ChapterIntro5_4:
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
-        .byte   W72
+        .byte   W78
         .byte           N12   , Gn2 , v100
         .byte   W12
         .byte                   Gn2
-        .byte   W12
+        .byte   W06
 @ 003   ----------------------------------------
 ChapterIntro5_4_3:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Fn2 , v100
         .byte   W12
         .byte                   Gn2
@@ -299,10 +306,10 @@ ChapterIntro5_4_3:
         .byte                   Gn2
         .byte   W12
         .byte                   Gn2
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 004   ----------------------------------------
-        .byte   W12
+        .byte   W18
         .byte                   Fn2
         .byte   W12
         .byte                   Gn2
@@ -310,15 +317,16 @@ ChapterIntro5_4_3:
         .byte                   Gn2
         .byte   W24
         .byte                   As2
-        .byte   W12
+        .byte   W06
 ChapterIntro5_4_LOOP:
+        .byte   W06
         .byte           N12   , Ds2 , v100
         .byte   W12
         .byte                   Ds2
-        .byte   W12
+        .byte   W06
 @ 005   ----------------------------------------
 ChapterIntro5_4_5:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Dn2 , v100
         .byte   W12
         .byte                   Ds2
@@ -330,10 +338,10 @@ ChapterIntro5_4_5:
         .byte                   Ds2
         .byte   W12
         .byte                   Ds2
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 006   ----------------------------------------
-        .byte   W12
+        .byte   W18
         .byte                   Dn2
         .byte   W12
         .byte                   Ds2
@@ -345,10 +353,10 @@ ChapterIntro5_4_5:
         .byte                   Cn3
         .byte   W12
         .byte                   Cn3
-        .byte   W12
+        .byte   W06
 @ 007   ----------------------------------------
 ChapterIntro5_4_7:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Bn2 , v100
         .byte   W12
         .byte                   Cn3
@@ -360,11 +368,11 @@ ChapterIntro5_4_7:
         .byte                   Cn3
         .byte   W12
         .byte                   Cn3
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 008   ----------------------------------------
 ChapterIntro5_4_8:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Bn2 , v100
         .byte   W12
         .byte                   Cn3
@@ -376,11 +384,11 @@ ChapterIntro5_4_8:
         .byte                   Dn3
         .byte   W12
         .byte                   Dn3
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 009   ----------------------------------------
 ChapterIntro5_4_9:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Cs3 , v100
         .byte   W12
         .byte                   Dn3
@@ -392,11 +400,11 @@ ChapterIntro5_4_9:
         .byte                   Dn3
         .byte   W12
         .byte                   Dn3
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 010   ----------------------------------------
 ChapterIntro5_4_10:
-        .byte   W12
+        .byte   W18
         .byte           N12   , Cs3 , v100
         .byte   W12
         .byte                   Fn3
@@ -408,13 +416,13 @@ ChapterIntro5_4_10:
         .byte                   Gn2
         .byte   W12
         .byte                   Gn2
-        .byte   W12
+        .byte   W06
         .byte   PEND
 @ 011   ----------------------------------------
         .byte   PATT
          .word  ChapterIntro5_4_3
 @ 012   ----------------------------------------
-        .byte   W12
+        .byte   W18
         .byte           N12   , Fn2 , v100
         .byte   W12
         .byte                   Gn2
@@ -426,12 +434,12 @@ ChapterIntro5_4_10:
         .byte                   Ds2
         .byte   W12
         .byte                   Ds2
-        .byte   W12
+        .byte   W06
 @ 013   ----------------------------------------
         .byte   PATT
          .word  ChapterIntro5_4_5
 @ 014   ----------------------------------------
-        .byte   W12
+        .byte   W18
         .byte           N12   , Dn2 , v100
         .byte   W12
         .byte                   Ds2
@@ -443,7 +451,7 @@ ChapterIntro5_4_10:
         .byte                   Cn3
         .byte   W12
         .byte                   Cn3
-        .byte   W12
+        .byte   W06
 @ 015   ----------------------------------------
         .byte   PATT
          .word  ChapterIntro5_4_7
@@ -460,7 +468,7 @@ ChapterIntro5_4_10:
         .byte   PATT
          .word  ChapterIntro5_4_3
 @ 020   ----------------------------------------
-        .byte   W12
+        .byte   W18
         .byte           N12   , Fn2 , v100
         .byte   W12
         .byte                   Gn2
@@ -468,9 +476,10 @@ ChapterIntro5_4_10:
         .byte                   Gn2
         .byte   W24
         .byte                   As2
-        .byte   W12
+        .byte   W06
         .byte   GOTO
          .word  ChapterIntro5_4_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 5 (Midi-Chn.5) ******************@
@@ -487,16 +496,18 @@ ChapterIntro5_5:
         .byte   W96
 @ 003   ----------------------------------------
 ChapterIntro5_5_3:
+        .byte   W06
         .byte           N12   , Cn3 , v100
         .byte   W48
         .byte                   Cn3
-        .byte   W48
+        .byte   W42
         .byte   PEND
 @ 004   ----------------------------------------
+        .byte   W06
         .byte                   Cn3
         .byte   W48
         .byte                   Cn3
-        .byte   W24
+        .byte   W18
 ChapterIntro5_5_LOOP:
         .byte   W24
 @ 005   ----------------------------------------
@@ -545,12 +556,14 @@ ChapterIntro5_5_LOOP:
         .byte   PATT
          .word  ChapterIntro5_5_3
 @ 020   ----------------------------------------
+        .byte   W06
         .byte           N12   , Cn3 , v100
         .byte   W48
         .byte                   Cn3
-        .byte   W24
+        .byte   W18
         .byte   GOTO
          .word  ChapterIntro5_5_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 6 (Midi-Chn.6) ******************@
@@ -567,13 +580,14 @@ ChapterIntro5_6:
         .byte   W96
 @ 003   ----------------------------------------
 ChapterIntro5_6_3:
-        .byte   W48
+        .byte   W54
         .byte           N12   , Ds4 , v100
         .byte   W24
         .byte                   Ds4
-        .byte   W24
+        .byte   W18
         .byte   PEND
 @ 004   ----------------------------------------
+        .byte   W06
         .byte                   Ds4
         .byte   W12
         .byte                   Ds4
@@ -581,7 +595,7 @@ ChapterIntro5_6_3:
         .byte                   Ds4
         .byte   W24
         .byte                   Ds4
-        .byte   W24
+        .byte   W18
 ChapterIntro5_6_LOOP:
         .byte   W24
 @ 005   ----------------------------------------
@@ -589,6 +603,7 @@ ChapterIntro5_6_LOOP:
          .word  ChapterIntro5_6_3
 @ 006   ----------------------------------------
 ChapterIntro5_6_6:
+        .byte   W06
         .byte           N12   , Ds4 , v100
         .byte   W12
         .byte                   Ds4
@@ -596,7 +611,7 @@ ChapterIntro5_6_6:
         .byte                   Ds4
         .byte   W24
         .byte                   Ds4
-        .byte   W48
+        .byte   W42
         .byte   PEND
 @ 007   ----------------------------------------
         .byte   PATT
@@ -638,6 +653,7 @@ ChapterIntro5_6_6:
         .byte   PATT
          .word  ChapterIntro5_6_3
 @ 020   ----------------------------------------
+        .byte   W06
         .byte           N12   , Ds4 , v100
         .byte   W12
         .byte                   Ds4
@@ -645,9 +661,10 @@ ChapterIntro5_6_6:
         .byte                   Ds4
         .byte   W24
         .byte                   Ds4
-        .byte   W24
+        .byte   W18
         .byte   GOTO
          .word  ChapterIntro5_6_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 7 (Midi-Chn.7) ******************@
@@ -662,7 +679,7 @@ ChapterIntro5_7:
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
-        .byte   W30
+        .byte   W36
         .byte           TIE   , As3 , v100
         .byte   W05
         .byte           PAN   , c_v+61
@@ -692,13 +709,13 @@ ChapterIntro5_7:
         .byte                   c_v+1
         .byte   W01
         .byte                   c_v+0
-        .byte   W48
+        .byte   W42
 @ 003   ----------------------------------------
         .byte   W96
 @ 004   ----------------------------------------
-        .byte   W48
+        .byte   W54
         .byte           EOT
-        .byte   W24
+        .byte   W18
 ChapterIntro5_7_LOOP:
         .byte   W24
 @ 005   ----------------------------------------
@@ -735,6 +752,7 @@ ChapterIntro5_7_LOOP:
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_7_LOOP
+        .byte   W06
         .byte   FINE
 
 @****************** Track 8 (Midi-Chn.8) ******************@
@@ -748,9 +766,9 @@ ChapterIntro5_8:
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
-        .byte   W72
+        .byte   W78
         .byte           TIE   , Gn1 , v100
-        .byte   W19
+        .byte   W13
         .byte           VOL   , 10
         .byte   W05
 @ 003   ----------------------------------------
@@ -766,55 +784,56 @@ ChapterIntro5_8:
         .byte                   60
         .byte   W05
 @ 004   ----------------------------------------
-        .byte   W60
+        .byte   W66
         .byte           EOT
         .byte           N12   , As1
-        .byte   W12
+        .byte   W06
 ChapterIntro5_8_LOOP:
+        .byte   W06
         .byte           TIE   , Ds1 , v100
-        .byte   W24
+        .byte   W18
 @ 005   ----------------------------------------
         .byte   W96
 @ 006   ----------------------------------------
 ChapterIntro5_8_6:
-        .byte   W60
+        .byte   W66
         .byte           EOT   , Ds1
         .byte           N12   , Gn1 , v100
         .byte   W12
         .byte           TIE   , Cn2
-        .byte   W24
+        .byte   W18
         .byte   PEND
 @ 007   ----------------------------------------
         .byte   W96
 @ 008   ----------------------------------------
 ChapterIntro5_8_8:
-        .byte   W60
+        .byte   W66
         .byte           EOT   , Cn2
         .byte           N12   , Cs2 , v100
         .byte   W12
         .byte           TIE   , Dn2
-        .byte   W24
+        .byte   W18
         .byte   PEND
 @ 009   ----------------------------------------
         .byte   W96
 @ 010   ----------------------------------------
 ChapterIntro5_8_10:
-        .byte   W60
+        .byte   W66
         .byte           EOT   , Dn2
         .byte           N12   , An1 , v100
         .byte   W12
         .byte           TIE   , Gn1
-        .byte   W24
+        .byte   W18
         .byte   PEND
 @ 011   ----------------------------------------
         .byte   W96
 @ 012   ----------------------------------------
-        .byte   W60
+        .byte   W66
         .byte           EOT
         .byte           N12   , As1
         .byte   W12
         .byte           TIE   , Ds1
-        .byte   W24
+        .byte   W18
 @ 013   ----------------------------------------
         .byte   W96
 @ 014   ----------------------------------------
@@ -833,12 +852,13 @@ ChapterIntro5_8_10:
 @ 019   ----------------------------------------
         .byte   W96
 @ 020   ----------------------------------------
-        .byte   W60
+        .byte   W66
         .byte           EOT   , Gn1
         .byte           N12   , As1 , v100
-        .byte   W12
+        .byte   W06
         .byte   GOTO
          .word  ChapterIntro5_8_LOOP
+        .byte   W06
         .byte   FINE
 
 @***************** Track 9 (Midi-Chn.10) ******************@
@@ -872,10 +892,11 @@ ChapterIntro5_9_LOOP:
 @ 009   ----------------------------------------
         .byte   W96
 @ 010   ----------------------------------------
-        .byte   W72
+        .byte   W78
         .byte           N24   , Gn4 , v100
-        .byte   W24
+        .byte   W18
 @ 011   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Fs4
@@ -887,8 +908,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Fs4
         .byte   W12
         .byte           N24   , Gn4
-        .byte   W24
+        .byte   W18
 @ 012   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Fs4
@@ -902,8 +924,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Fs4
         .byte   W12
         .byte           N24   , Ds4
-        .byte   W24
+        .byte   W18
 @ 013   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Dn4
@@ -915,8 +938,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Dn4
         .byte   W12
         .byte           N24   , Ds4
-        .byte   W24
+        .byte   W18
 @ 014   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Dn4
@@ -930,8 +954,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Dn4
         .byte   W12
         .byte           N24   , Cn4
-        .byte   W24
+        .byte   W18
 @ 015   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Bn3
@@ -943,8 +968,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Bn3
         .byte   W12
         .byte           N24   , Cn4
-        .byte   W24
+        .byte   W18
 @ 016   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Bn3
@@ -958,8 +984,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Cs4
         .byte   W12
         .byte           N24   , Dn4
-        .byte   W24
+        .byte   W18
 @ 017   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Cs4
@@ -971,8 +998,9 @@ ChapterIntro5_9_LOOP:
         .byte                   Cs4
         .byte   W12
         .byte           N24   , Dn4
-        .byte   W24
+        .byte   W18
 @ 018   ----------------------------------------
+        .byte   W06
         .byte           N12
         .byte   W12
         .byte                   Cs4
@@ -980,13 +1008,14 @@ ChapterIntro5_9_LOOP:
         .byte                   Dn4
         .byte   W12
         .byte           N24   , Fs4
-        .byte   W60
+        .byte   W54
 @ 019   ----------------------------------------
         .byte   W96
 @ 020   ----------------------------------------
         .byte   W72
         .byte   GOTO
          .word  ChapterIntro5_9_LOOP
+        .byte   W06
         .byte   FINE
 
 

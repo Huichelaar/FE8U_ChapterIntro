@@ -29,9 +29,9 @@ ChapterIntro6_0:
         BYTE                   20
         BYTE   W10
         BYTE                   10
-        BYTE   W10
+        BYTE   W16
         BYTE           EOT
-        BYTE   W54
+        BYTE   W48
 // 003   ----------------------------------------
         BYTE   W96
 // 004   ----------------------------------------
@@ -72,6 +72,7 @@ ChapterIntro6_0_LOOP:
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_0_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 1 (Midi-Chn.1) ******************//
 ChapterIntro6_1:
@@ -81,6 +82,7 @@ ChapterIntro6_1:
         BYTE           VOICE   127
         BYTE   W96
 // 001   ----------------------------------------
+        BYTE   W06
         BYTE           N12     Gs4   v100
         BYTE   W12
         BYTE                   Gs4
@@ -92,7 +94,7 @@ ChapterIntro6_1:
         BYTE                   Gs4
         BYTE   W12
         BYTE                   Gs4
-        BYTE   W36
+        BYTE   W30
 // 002   ----------------------------------------
         BYTE   W96
 // 003   ----------------------------------------
@@ -135,6 +137,7 @@ ChapterIntro6_1_LOOP:
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_1_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 2 (Midi-Chn.2) ******************//
 ChapterIntro6_2:
@@ -142,7 +145,7 @@ ChapterIntro6_2:
 // 000   ----------------------------------------
         BYTE           VOL     20
         BYTE           VOICE   100
-        BYTE   W48
+        BYTE   W54
         BYTE           N12     Cn5   v100
         BYTE   W12
         BYTE                   Bn4
@@ -150,12 +153,13 @@ ChapterIntro6_2:
         BYTE                   As4
         BYTE   W12
         BYTE                   An4
-        BYTE   W12
+        BYTE   W06
 // 001   ----------------------------------------
+        BYTE   W06
         BYTE                   Gs4
         BYTE   W12
         BYTE                   Gn4
-        BYTE   W84
+        BYTE   W78
 // 002   ----------------------------------------
         BYTE   W96
 // 003   ----------------------------------------
@@ -198,6 +202,7 @@ ChapterIntro6_2_LOOP:
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_2_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 3 (Midi-Chn.3) ******************//
 ChapterIntro6_3:
@@ -207,21 +212,23 @@ ChapterIntro6_3:
         BYTE           VOL     80
         BYTE   W96
 // 001   ----------------------------------------
-        BYTE   W84
+        BYTE   W90
         BYTE           N30     Bn2   v100
-        BYTE   W12
+        BYTE   W06
 // 002   ----------------------------------------
         BYTE   W36
         BYTE   W03
         BYTE           VOICE   117
         BYTE           VOL     100
+        BYTE   W06
         BYTE           N06     Gn1
-        BYTE   W32
-        BYTE   W01
+        BYTE   W24
+        BYTE   W03
         BYTE           VOICE   111
         BYTE           VOL     50
+        BYTE   W06
         BYTE           N24     Ds4
-        BYTE   W24
+        BYTE   W18
 // 003   ----------------------------------------
         BYTE   W96
 // 004   ----------------------------------------
@@ -262,6 +269,7 @@ ChapterIntro6_3_LOOP:
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_3_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 4 (Midi-Chn.4) ******************//
 ChapterIntro6_4:
@@ -273,11 +281,12 @@ ChapterIntro6_4:
 // 001   ----------------------------------------
         BYTE   W96
 // 002   ----------------------------------------
-        BYTE   W84
+        BYTE   W90
         BYTE           N12     Gn2   v100
-        BYTE   W12
+        BYTE   W06
 // 003   ----------------------------------------
 ChapterIntro6_4_3:
+        BYTE   W06
         BYTE           N12     Gn2   v100
         BYTE   W24
         BYTE                   Fn2
@@ -289,9 +298,10 @@ ChapterIntro6_4_3:
         BYTE                   Fn2
         BYTE   W12
         BYTE                   Gn2
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 004   ----------------------------------------
+        BYTE   W06
         BYTE                   Gn2
         BYTE   W24
         BYTE                   Fn2
@@ -301,12 +311,14 @@ ChapterIntro6_4_3:
         BYTE                   Gn2
         BYTE   W24
         BYTE                   As2
-        BYTE   W12
+        BYTE   W06
 ChapterIntro6_4_LOOP:
+        BYTE   W06
         BYTE           N12     Ds2   v100
-        BYTE   W12
+        BYTE   W06
 // 005   ----------------------------------------
 ChapterIntro6_4_5:
+        BYTE   W06
         BYTE           N12     Ds2   v100
         BYTE   W24
         BYTE                   Dn2
@@ -318,9 +330,10 @@ ChapterIntro6_4_5:
         BYTE                   Dn2
         BYTE   W12
         BYTE                   Ds2
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 006   ----------------------------------------
+        BYTE   W06
         BYTE                   Ds2
         BYTE   W24
         BYTE                   Dn2
@@ -332,9 +345,10 @@ ChapterIntro6_4_5:
         BYTE                   Bn2
         BYTE   W12
         BYTE                   Cn3
-        BYTE   W12
+        BYTE   W06
 // 007   ----------------------------------------
 ChapterIntro6_4_7:
+        BYTE   W06
         BYTE           N12     Cn3   v100
         BYTE   W24
         BYTE                   Bn2
@@ -346,10 +360,11 @@ ChapterIntro6_4_7:
         BYTE                   Bn2
         BYTE   W12
         BYTE                   Cn3
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 008   ----------------------------------------
 ChapterIntro6_4_8:
+        BYTE   W06
         BYTE           N12     Cn3   v100
         BYTE   W24
         BYTE                   Bn2
@@ -361,10 +376,11 @@ ChapterIntro6_4_8:
         BYTE                   Cs3
         BYTE   W12
         BYTE                   Dn3
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 009   ----------------------------------------
 ChapterIntro6_4_9:
+        BYTE   W06
         BYTE           N12     Dn3   v100
         BYTE   W24
         BYTE                   Cs3
@@ -376,10 +392,11 @@ ChapterIntro6_4_9:
         BYTE                   Cs3
         BYTE   W12
         BYTE                   Dn3
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 010   ----------------------------------------
 ChapterIntro6_4_10:
+        BYTE   W06
         BYTE           N12     Dn3   v100
         BYTE   W24
         BYTE                   Cs3
@@ -391,12 +408,13 @@ ChapterIntro6_4_10:
         BYTE           N12     An2
         BYTE   W12
         BYTE                   Gn2
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 011   ----------------------------------------
         BYTE   PATT
          POIN2  ChapterIntro6_4_3
 // 012   ----------------------------------------
+        BYTE   W06
         BYTE           N12     Gn2   v100
         BYTE   W24
         BYTE                   Fn2
@@ -408,11 +426,12 @@ ChapterIntro6_4_10:
         BYTE                   As2
         BYTE   W12
         BYTE                   Ds2
-        BYTE   W12
+        BYTE   W06
 // 013   ----------------------------------------
         BYTE   PATT
          POIN2  ChapterIntro6_4_5
 // 014   ----------------------------------------
+        BYTE   W06
         BYTE           N12     Ds2   v100
         BYTE   W24
         BYTE                   Dn2
@@ -424,7 +443,7 @@ ChapterIntro6_4_10:
         BYTE                   Fn2
         BYTE   W12
         BYTE                   Cn3
-        BYTE   W12
+        BYTE   W06
 // 015   ----------------------------------------
         BYTE   PATT
          POIN2  ChapterIntro6_4_7
@@ -441,6 +460,7 @@ ChapterIntro6_4_10:
         BYTE   PATT
          POIN2  ChapterIntro6_4_3
 // 020   ----------------------------------------
+        BYTE   W06
         BYTE           N12     Gn2   v100
         BYTE   W24
         BYTE                   Fn2
@@ -450,9 +470,10 @@ ChapterIntro6_4_10:
         BYTE                   Gn2
         BYTE   W24
         BYTE                   As2
-        BYTE   W12
+        BYTE   W06
         BYTE   GoTo
          POIN2  ChapterIntro6_4_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 5 (Midi-Chn.5) ******************//
 ChapterIntro6_5:
@@ -467,18 +488,18 @@ ChapterIntro6_5:
         BYTE   W96
 // 003   ----------------------------------------
 ChapterIntro6_5_3:
-        BYTE   W12
+        BYTE   W18
         BYTE           N12     Cn3   v100
         BYTE   W48
         BYTE                   Cn3
-        BYTE   W36
+        BYTE   W30
         BYTE   PEND
 // 004   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE                   Cn3
         BYTE   W48
         BYTE                   Cn3
-        BYTE   W24
+        BYTE   W18
 ChapterIntro6_5_LOOP:
         BYTE   W12
 // 005   ----------------------------------------
@@ -527,13 +548,14 @@ ChapterIntro6_5_LOOP:
         BYTE   PATT
          POIN2  ChapterIntro6_5_3
 // 020   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12     Cn3   v100
         BYTE   W48
         BYTE                   Cn3
-        BYTE   W24
+        BYTE   W18
         BYTE   GoTo
          POIN2  ChapterIntro6_5_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 6 (Midi-Chn.6) ******************//
 ChapterIntro6_6:
@@ -548,14 +570,14 @@ ChapterIntro6_6:
         BYTE   W96
 // 003   ----------------------------------------
 ChapterIntro6_6_3:
-        BYTE   W60
+        BYTE   W66
         BYTE           N12     Ds4   v100
         BYTE   W24
         BYTE                   Ds4
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 004   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE                   Ds4
         BYTE   W12
         BYTE                   Ds4
@@ -563,7 +585,7 @@ ChapterIntro6_6_3:
         BYTE                   Ds4
         BYTE   W24
         BYTE                   Ds4
-        BYTE   W24
+        BYTE   W18
 ChapterIntro6_6_LOOP:
         BYTE   W12
 // 005   ----------------------------------------
@@ -571,7 +593,7 @@ ChapterIntro6_6_LOOP:
          POIN2  ChapterIntro6_6_3
 // 006   ----------------------------------------
 ChapterIntro6_6_6:
-        BYTE   W12
+        BYTE   W18
         BYTE           N12     Ds4   v100
         BYTE   W12
         BYTE                   Ds4
@@ -579,7 +601,7 @@ ChapterIntro6_6_6:
         BYTE                   Ds4
         BYTE   W24
         BYTE                   Ds4
-        BYTE   W36
+        BYTE   W30
         BYTE   PEND
 // 007   ----------------------------------------
         BYTE   PATT
@@ -621,7 +643,7 @@ ChapterIntro6_6_6:
         BYTE   PATT
          POIN2  ChapterIntro6_6_3
 // 020   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12     Ds4   v100
         BYTE   W12
         BYTE                   Ds4
@@ -629,9 +651,10 @@ ChapterIntro6_6_6:
         BYTE                   Ds4
         BYTE   W24
         BYTE                   Ds4
-        BYTE   W24
+        BYTE   W18
         BYTE   GoTo
          POIN2  ChapterIntro6_6_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 7 (Midi-Chn.7) ******************//
 ChapterIntro6_7:
@@ -644,17 +667,15 @@ ChapterIntro6_7:
 // 001   ----------------------------------------
         BYTE   W96
 // 002   ----------------------------------------
-        BYTE   W42
+        BYTE   W48
         BYTE           TIE     As3   v100
-        BYTE   W01
+        BYTE   W05
         BYTE           PAN     c_v+61
         BYTE   W01
         BYTE                   c_v+56
         BYTE   W01
         BYTE                   c_v+51
         BYTE   W01
-        BYTE                   c_v+49
-        BYTE   W04
         BYTE                   c_v+46
         BYTE   W01
         BYTE                   c_v+41
@@ -676,13 +697,13 @@ ChapterIntro6_7:
         BYTE                   c_v+1
         BYTE   W01
         BYTE                   c_v+0
-        BYTE   W36
+        BYTE   W30
 // 003   ----------------------------------------
         BYTE   W96
 // 004   ----------------------------------------
-        BYTE   W60
+        BYTE   W66
         BYTE           EOT
-        BYTE   W24
+        BYTE   W18
 ChapterIntro6_7_LOOP:
         BYTE   W12
 // 005   ----------------------------------------
@@ -719,6 +740,7 @@ ChapterIntro6_7_LOOP:
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_7_LOOP
+        BYTE   W06
         BYTE   FINE
 //****************** Track 8 (Midi-Chn.8) ******************//
 ChapterIntro6_8:
@@ -730,9 +752,9 @@ ChapterIntro6_8:
 // 001   ----------------------------------------
         BYTE   W96
 // 002   ----------------------------------------
-        BYTE   W84
+        BYTE   W90
         BYTE           TIE     Gn1   v100
-        BYTE   W12
+        BYTE   W06
 // 003   ----------------------------------------
         BYTE   W07
         BYTE           VOL     10
@@ -748,56 +770,56 @@ ChapterIntro6_8:
 // 004   ----------------------------------------
         BYTE   W02
         BYTE                   60
-        BYTE   W68
-        BYTE   W02
+        BYTE   W76
         BYTE           EOT
         BYTE           N12     As1
-        BYTE   W12
+        BYTE   W06
 ChapterIntro6_8_LOOP:
+        BYTE   W06
         BYTE           TIE     Ds1   v100
-        BYTE   W12
+        BYTE   W06
 // 005   ----------------------------------------
         BYTE   W96
 // 006   ----------------------------------------
 ChapterIntro6_8_6:
-        BYTE   W72
+        BYTE   W78
         BYTE           EOT     Ds1
         BYTE           N12     Gn1   v100
         BYTE   W12
         BYTE           TIE     Cn2
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 007   ----------------------------------------
         BYTE   W96
 // 008   ----------------------------------------
 ChapterIntro6_8_8:
-        BYTE   W72
+        BYTE   W78
         BYTE           EOT     Cn2
         BYTE           N12     Cs2   v100
         BYTE   W12
         BYTE           TIE     Dn2
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 009   ----------------------------------------
         BYTE   W96
 // 010   ----------------------------------------
 ChapterIntro6_8_10:
-        BYTE   W72
+        BYTE   W78
         BYTE           EOT     Dn2
         BYTE           N12     An1   v100
         BYTE   W12
         BYTE           TIE     Gn1
-        BYTE   W12
+        BYTE   W06
         BYTE   PEND
 // 011   ----------------------------------------
         BYTE   W96
 // 012   ----------------------------------------
-        BYTE   W72
+        BYTE   W78
         BYTE           EOT
         BYTE           N12     As1
         BYTE   W12
         BYTE           TIE     Ds1
-        BYTE   W12
+        BYTE   W06
 // 013   ----------------------------------------
         BYTE   W96
 // 014   ----------------------------------------
@@ -816,12 +838,13 @@ ChapterIntro6_8_10:
 // 019   ----------------------------------------
         BYTE   W96
 // 020   ----------------------------------------
-        BYTE   W72
+        BYTE   W78
         BYTE           EOT     Gn1
         BYTE           N12     As1   v100
-        BYTE   W12
+        BYTE   W06
         BYTE   GoTo
          POIN2  ChapterIntro6_8_LOOP
+        BYTE   W06
         BYTE   FINE
 //***************** Track 9 (Midi-Chn.10) ******************//
 ChapterIntro6_9:
@@ -853,11 +876,11 @@ ChapterIntro6_9_LOOP:
 // 009   ----------------------------------------
         BYTE   W96
 // 010   ----------------------------------------
-        BYTE   W84
+        BYTE   W90
         BYTE           N24     Gn4   v100
-        BYTE   W12
+        BYTE   W06
 // 011   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Fs4
@@ -869,9 +892,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Fs4
         BYTE   W12
         BYTE           N24     Gn4
-        BYTE   W12
+        BYTE   W06
 // 012   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Fs4
@@ -885,9 +908,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Fs4
         BYTE   W12
         BYTE           N24     Ds4
-        BYTE   W12
+        BYTE   W06
 // 013   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Dn4
@@ -899,9 +922,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Dn4
         BYTE   W12
         BYTE           N24     Ds4
-        BYTE   W12
+        BYTE   W06
 // 014   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Dn4
@@ -915,9 +938,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Dn4
         BYTE   W12
         BYTE           N24     Cn4
-        BYTE   W12
+        BYTE   W06
 // 015   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Bn3
@@ -929,9 +952,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Bn3
         BYTE   W12
         BYTE           N24     Cn4
-        BYTE   W12
+        BYTE   W06
 // 016   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Bn3
@@ -945,9 +968,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Cs4
         BYTE   W12
         BYTE           N24     Dn4
-        BYTE   W12
+        BYTE   W06
 // 017   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Cs4
@@ -959,9 +982,9 @@ ChapterIntro6_9_LOOP:
         BYTE                   Cs4
         BYTE   W12
         BYTE           N24     Dn4
-        BYTE   W12
+        BYTE   W06
 // 018   ----------------------------------------
-        BYTE   W12
+        BYTE   W18
         BYTE           N12
         BYTE   W12
         BYTE                   Cs4
@@ -969,13 +992,14 @@ ChapterIntro6_9_LOOP:
         BYTE                   Dn4
         BYTE   W12
         BYTE           N24     Fs4
-        BYTE   W48
+        BYTE   W42
 // 019   ----------------------------------------
         BYTE   W96
 // 020   ----------------------------------------
         BYTE   W84
         BYTE   GoTo
          POIN2  ChapterIntro6_9_LOOP
+        BYTE   W06
         BYTE   FINE
 //********************** End of Song ***********************//
         ALIGN  4
