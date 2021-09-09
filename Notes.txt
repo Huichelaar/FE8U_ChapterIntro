@@ -1,0 +1,215 @@
+ROM OAM DATA: when pushed to secondary OAM, ALL ENTRIES ARE PUSHED!
+
+SetSpecialColorEffectsParameters:
+r0 = 2-bit bitmap BLDCNT 6-7, r1 = BLDALPHA EVA 0-4, r2 = BLDALPHA EVB 8-12, r3 = BLDY EVY 0-4.
+
+08001ed0:
+sets up BLDCNT 1st targets up to OBJ
+08001f0c:
+sets up BLDCNT 2nd targets up to OBJ
+08001f64:
+sets up BLDCNT 2nd target BD
+
+0800172c:
+r0 = address to palette buffer, r1 = which palette should be updated, r2 = how many contiguous palettes should be updated, r3 = update-coefficient? (-2 is used by 08020e48)
+This function sets up this part (past the genericTSAbuffer?) to be used by a loop to update palette buffer. It seems it can be used to darken palettes, but brightening them seems to work weirdly. Fade-out seems to look better than Fade-in.
+080d74b0:
+Takes no arguments. This function uses what 0800172c has set up, to update palette buffer. Does this stuff in ARM mode.
+
+Soundstuff:
+0800231C:
+r0 holds the rate at which the sfx is faded out (vanilla 4, greater means slower fade-out).
+080023E0:
+r0 holds (#0x1 in vanilla), not sure... just leave it at vanilla? seems to use r0 as pitch and... something else?
+
+
+8b9b1b0 gets child 859b0f0
+
+859b0f0:
+
+0002  0000  0801FDAD  // Call Procs_SomeKeyListener
+0003  0000  0801FDBD  // SetCycle Procs_SomeKeyListener(2)
+
+Seems to listen for a keypress to skip screen.
+
+080202F8 Start_chapter_Drawing_animation_of_two_lights_at_start
+This is called onCycle by 0859B1B0(+38).
+
+8b9b1b0 at 02024FAC:
+
++0x2C   WORD     D0  // Holds result of first mysterious calculation.
++0x30   WORD     A0  // Holds result of second mysterious calculation.
+
++0x4C   SSHORT   0   // init 0, pointer to this variable stored on stack. Used as index to proc/bytetable 859b120 and 859b132? If next entry is 00, after 4th Mysterious Calculation, loop 6C 8b9b1b0 is broken (When the lights collide!).
++0x4E   SSHORT   0   // init 0, pointer to this variable stored on stack. Used as argument r3 in Something_MysteriousCalculation. multiply with tablevalue. Increment after second pushtosecondaryOAM. If value >= +0x68, then, reset to 0, increment +0x4C,  and ... another mysterious calculation happens and a 6CLoop MAY be broken.
+
++0x50   SSHORT   0   // Seems like it's used to indicate keypress, skip scene.
++0x52   SSHORT   0   // Seems like it's used to indicate keypress, skip scene... but why two?
+
++0x64   SSHORT   0   // if signed greater than 0x64, skip some stuff including OAMRotScaleData. Increment after OAMRotScaleData.
+
++0x66   SSHORT   0   // Used as argument r3 to the 'optional' 4th Mysterious Calculation. Incremented after 4th Mysterious Calculation.
+
++0x68   SSHORT   3   // init 3, pointer to this variable stored on stack. Variable also stored on stack. Used as argument in Something_MysteriousCalculation, if 0, return tablevalue, otherwise used as denominator in a division. Holds 4th Mysterious Calculation value.
+
+Something_MysteriousCalculation:
+if +0x68 is 0, return current entry at 859b120
+elif argument r0 > 5, return 0
+else calculate.
+
+r0 is used to determine which part of Something_MysteriousCalculation should be executed.
+08012DE8-08012E02 is LDRDATA
+
+Two entries in 859b120/859b132 are used in mysterious calculation.
+
+Setting all vars to 0, and +0x68 to 3, right before the Break6CLoop will still work fine. We should be able to overwrite the entire function, leaving the mentioned values at their initial values. Start writing at 0x20306 through 0x20478.
+_________________________________________________________________
+
+Proc 0859b108 is used to scroll BG1 (and BG3 directly for some reason).
+Init func: 0801ffd0
+loop func: 0801ffd8
+
+0x080202e6, this ldr determines ID of sound being played by chapter intro,
+replace the word at 080202f4.
+
+Customize the parts between -----------.
+
+859b1b0 (MNC2(?)):
+
+SEGMENT 0, Initialization
+0200 0000 08030185      Calls BlockGameGraphicsLogic 08030185
+0200 0000 080200F1      Calls Start_chapter_Starting_routine 080200F0, also initiates child
+                        0859B108 which scrolls BG1
+0E00 3C00 00000000      Sleeps 0x3C cycles
+0500 0000 0859B0F0      Starts keylistener child proc. If key's pressed oft enough, set
+                        NextInstruction to label 1 (skip intro block) (and deletes itself).
+1800 0100 08021081      Calls initialization routine (sets some of its proc body vars)
+0200 0000 080202BD      Calls more initialization stuff and plays sound effect
+-----------------------------------------------------------------------------------------------
+SEGMENT 1, Two lights
+0300 0000 080202F9      Setscycle Drawing_Lights 080202F9
+
+SEGMENT 2, Bubble, Chaptertitle, 6 small lights
+0200 0000 080208F9      Calls something that initializes BLDCNT stuff
+0500 0000 0859B180      Starts Child proc, initializes/changes some vars, loops 08020808
+                        which updates BLDCNT (First BG, then bubble alphavalues), updates Affine (Rot/Scale data, param A-D and reference points) stuff for BG2, also runs FlushLCDControl and seems to set BLDstuff back once its loop is done. Done when the bubble vanished.
+                        
+0200 0000 08020779      Calls chaptertitledraw routine. Fills BG with tile 0x280, palette 1.
+                        Does some unnecessarily complicated stuff to get textpalette (bl at 0802078A). Changes BG1 tiles for texttiles (bl at 080207AA). Sets 0300000D bit 1 to indicate BG0 needs to be updated.
+
+0E00 0100 00000000      Sleeps for 0x1 cycle.
+0200 0000 080204AD      Call another ChapterIntroFx ASM, Sets DisplayBG0, BG1 (already set),
+                        BG2 (already set), OBJ (already set) in LCD Control. Also Unsets BG3 (already unset). sets shorts +4C, +0x64, +0x66 and +0x68 to 0.
+
+0300 0000 08020579      Setscycle some introfx. Uses +0x64 as some timer and param and +0x4C
+                        as iterator (if >= 0x45, breaks loop) param for mysterious calculation. Is used to draw small lights after big ones collide (3 calls to 024e4 which draws two mirrored lights, for 6 lights in total).
+
+SEGMENT 3
+0200 0000 0802009D      Sets BG mode to 0 (all BGs regular/text mode). Uses
+                        SetBackgroundTileDataOffset (takes 2 arguments: BG index (0-3) and tile offset, 8000 here, because that's where tiles 2 starts. Sets the character base block). Sets BG0 priority to 0 (already set to 0), BG1 priority to 2 (already set to 2), BG2 priority to 1 (already set to 1), BG3 priority to 3 (used to be 2). Sets BG2 screen size to 256x256 (2K) (used to be 512x256 or 256x256 in rotscale mode).
+                        
+0500 0000 0859B0E0      Start child proc which cycles 0801FD90 which uses game clock to
+                        scroll/position BG2.
+                        
+0500 0000 0859B160      Start child proc which sleeps a little bit at first, starts another
+                        child proc which
+                          runs 08020dbc: This sets outside BG0-BG3 enable bits (already set) and unsets Outside OBJ Enable bit (previously set) of WINOUT.
+                          cycles 08020de8:
+                          updates the textframe display window (until index in +0x4C >= 0x28).
+                          
+                        then continously draws the textframes... twice for some reason.
+
+0200 0000 08020945      LCD Control, Sets DisplayBG 0, 1, 2 (all already set), unsets
+                        DisplayBG 3 (already unset), sets DisplayOBJ (already set). Resets +0x4C. Unsets all 1st targets in BLDCNT, then sets BG2 1st target (essentially changes nothing). Unsets all 2nd targets in BLDCNT, then sets BG1 as 2nd target (also, changes nothing). Load wavy BG into tiles2, palette, charblock (into genericbuffer (02020188) before FillTileRect'ing into BG2_Map_Buffer), Set 0300000D BG2 update-bit (using BG_EnableSyncByMask).
+
+0300 0000 080209D9      Uses +0x4C as index again. Used to increase blendiness of wavy
+                        (SetSpecialColorEffectsParameters). Does Something every fourth clock cycle unless var +0x50 == 3, in which case it does that every cycle.
+                          Something: If +0x52 != 0 (on keypress), increment +0x4c by 0x4, otherwise by 0x1. If +0x4C >= 0x5, Break loop
+                          
+1800 A000 08021089      Set +0x4C to 0xA
+0300 0000 08021091      if +0x52 != 0
+                          break loop
+                        else
+                          +0x4C--
+                          if 0x4C < 0
+                            break loop
+                        So, it's like a 2.67-second timer, unless something unsets +0x52 (keypress). Once time is up, fade out screens.
+                        
+0200 0000 08020A41      set +0x4C to 0x1E (half-a-second fade-out timer?). Does some really
+                        weird stuff to the gGenericTSABuffer (02022288) using the palette buffer.
+                        
+FADEOUT
+0300 0000 08020A8D      Only does stuff every 4th cycle. ARM 'Copies' what was written to
+                        (02022288) to another part of gGenericTSABuffer. Seems to be darkening the colours of the used palettes.
+                        Decrements +0x4C. If +0x4C < 0:
+                          LCD Control, sets DisplayBG 0 (no change), unsets DisplayBG1, DisplayBG2, DisplayBG3 (no change), sets DisplayOBJ (no change). Sets BG2 Tiles to 0600 0000 using SetBackgroundTileDataOffset.
+                          Sets first short at palete_buffer to r4, idk, EnablePaletteSync. Breaks loop.
+                          
+DESTRUCTOR
+0900 0000 0859B0E0      End all BG2 scrollers.
+0900 0000 0859B108      End all bubble stuff (should've already ended)? Bubble child should
+                        be 0859B180 not 0859b108 (maybe they made a mistake?)
+0900 0000 0859B160      End all textframedrawer (and, by recursion, their child which
+                        should've already ended).
+-----------------------------------------------------------------------------------------------
+1800 0000 08021081      +0x50 := 0x0. yields (Note how this routine is used before as well)
+
+SETTING UP BATTLE MAP
+0200 0000 08020B21      set BattleMapStateCameraPos to 0x280
+0200 0000 080301B9      Calls UnblockGameGraphicsLogic
+0200 0000 08020B31      Sets all DisplayBG and DisplayOBJ. Clears BG0 through BG2. More stuff.
+0200 0000 08020C2D      Clears the part of TSAbuffer that 0802A8D used. Check weather is lava
+0300 0000 08020CA5      Changes more TSAbuffer, probably related to 0802a8D again. Breaks
+                        loop quickly?
+0E00 1E00 00000000      Sleep for half a second
+0C00 6300 00000000      GOTO 63
+0B00 0100 00000000
+
+SKIP
+0200 0000 08020E49      Seems to happen on skip. We hook into this to reset 0x030030e0. Sets
+                        +0x4C to #0xF. Does some soundstuff, modifies and copies palettes to be darkened to some part in genericTSAbuffer.
+0300 0000 08020EAD      Fades out palettes by using the stuff set in genericTSAbuffer
+                        (uses ARM for this). It may also flush LCD?
+                        Decrements +0x4C. If +0x4C < 0: unset all BGs and OBJ (DISPCNT), Set BG2 TileDataOffset to Tiles1, break loop.
+0E00 3C00 00000000      Sleep for a second
+0200 0000 08020B21      set BattleMapStateCameraPos to 0x280
+0200 0000 080301B9      Calls UnblockGameGraphicsLogic
+0200 0000 08020B31      Sets all DisplayBG and DisplayOBJ. Clears BG0 through BG2. More stuff.
+0200 0000 08020F01      Turn off display for BG0, BG1, BG2, clear tiles, kills the same procs
+                        as DESTRUCTOR, more palette manipulation. +0x4c := 0xE. Uses ChapterDefinition+0x28 to determine whether to call Switch_BGM_void.
+0300 0000 08020FF9      Updates(/brightens?) relevant palettes as set in initializer ^.
+                        Prepares chapter (weather, Dark Before Initial Event (if so, unset +0x4C, otherwise, enable palettesync), Set BG0, BG1, BG2, unset BG3, OBJ. LoadTitleAnimations2Only if +0x4C is zero. if +0x4C is zero, break loop. Seems this loop runs whilst something needs to be faded-in which only happens if chapterdef+0x87 is unset.
+
+SETTING UP BATTLE MAP (cont.)
+0B00 6300 00000000
+0200 0000 080210C9      Sets BG0 priority 0, BG1 1, BG2 2, BG3 3. DISPCNT: unset bit 5, 6, 7.
+0000 0000 00000000      END
+
+it seems LoadChapterMapGfx (0801990C), and others will fill palette buffer with palettestuff. We should be able to clear the entire palettebuffer beforehand if we want to. Even when chapterdef+0x87 is not set!
+_________________________________________________________________________________________________________
+
+'r' means it's also used in 0859b1b0.
+
+0859b578 (MNC3, skip world map & save, display chapter title):
+
+
+0200 0000 08030185  r   Calls BlockGameGraphicsLogic 08030185
+0200 0000 0802237D      Calls huge ChapterIntroTitleOnly function, 168 halfwords.
+0500 0000 0859B0F0  r   Starts keylistener child proc. If key's pressed oft enough...
+
+0200 0000 08013D8D      Calls StartFadeOutBlack, creates a child that fades out.
+0300 0000 08014069      Loops ContinueUntilSomeTransistion6CExists. Calls IsFadeActive
+1800 6300 08021081  r   Stores 0x63 halfword in procstate+0x50, used as GOTO maybe?
+0E00 B400 00000000      Sleep three seconds
+0B00 6300 00000000      LABEL 0x63
+
+0200 0000 08013D69      Calls StartFadeInBlack, creates a child that fades in.
+0300 0000 08014069      Loops ContinueUntilSomeTransistion6CExists. Calls IsFadeActive
+0B00 E703 00000000      LABEL 0x3E7
+
+0200 0000 080224ED      Smaller ChapterIntroTitleOnly function. Empties BG0, some other 0x0400 0000 stuff
+0200 0000 08020B21  r   set BattleMapStateCameraPos to 0x280
+0200 0000 080301B9  r   Calls UnblockGameGraphicsLogic
+0200 0000 08022529      Calls stuff to setup next chapter methinks.
+0E00 0000 00000000      Yield
+0000 0000 00000000      END
